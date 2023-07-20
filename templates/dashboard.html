@@ -1,0 +1,46 @@
+
+{% extends "layout.html" %}
+
+
+ {% block body %}
+ 
+
+    
+
+      <h1>Dashboard</h1>
+      <a class="btn btn-outline-primary btn-sm" href="/add_article"> Add article</a>
+      <hr>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Article title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          {% for article in articles %}
+          
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{article.title}}</td>
+            <td>{{article.content | safe | truncate(20)}}</td>
+            <td>
+                <a class="btn btn-small btn-secondary" href="/edit_article/{{article.id}}">Edit</a>
+                <a class="btn btn-small btn-danger" href="/delete_article/{{article.id}}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+            
+          
+        </tbody>
+      </table>
+
+
+{% endblock %}
+    
+
+
